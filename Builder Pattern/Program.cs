@@ -36,6 +36,7 @@
 
     public class IceCream
     {
+        private IceCream() { }
         public string Flavour { get; private set; }
         public string Topping { get; private set; }
         public int Size { get; private set; }
@@ -50,6 +51,11 @@
             };
         }
 
+        public void Show()
+        {
+            System.Console.WriteLine($"Ice cream flavour is of {Flavour} flavour, size = {Size} and topping = {Topping}");
+        }
+
     }
 
 
@@ -61,25 +67,24 @@
             IceCream chocoiceCream = builder.SetFlavour("Chocolote")
                     .SetSize(5)
                     .Build();
-            System.Console.WriteLine($"Ice cream flavour is {chocoiceCream.Flavour}, size = {chocoiceCream.Size} and topping = {chocoiceCream.Topping}");
+            chocoiceCream.Show();
 
             IceCream vanillaicecream = builder.SetFlavour("Vanilla")
                                             .SetSize(2)
                                             .SetToppings("Walnuts")
                                             .Build();
-
-            System.Console.WriteLine($"Ice cream flavour is {vanillaicecream.Flavour}, size = {vanillaicecream.Size} and topping = {vanillaicecream.Topping}");
-
+            vanillaicecream.Show();
             // ***************************************************************************************************************************************** //
 
             IVehicleBuilder carVehicleBuilder = new Car();
             Factory factory = new Factory();
             var car = factory.Assemble(carVehicleBuilder, "Car body", 4, 6, 6);
-            System.Console.WriteLine($"Vehicle body = {car.Body}, wheels = {car.Wheels}, seats= {car.Seats}, lights = {car.Lights}");
+
+            car.Show();
 
             IVehicleBuilder bikeVehicleBuilder = new Bike();
             var bike = factory.Assemble(bikeVehicleBuilder, "Bike body", 2, 2, 2);
-            System.Console.WriteLine($"Vehicle body = {bike.Body}, wheels = {bike.Wheels}, seats= {bike.Seats}, lights = {bike.Lights}");
+            bike.Show();
         }
     }
 
@@ -200,6 +205,11 @@
                 Wheels = builder.Wheels,
                 Seats = builder.Seats
             };
+        }
+
+        public void Show()
+        {
+            System.Console.WriteLine($"Vehicle body = {Body}, wheels = {Wheels}, seats= {Seats}, lights = {Lights}");
         }
     }
 
